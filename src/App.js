@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, withStyles } from "@material-ui/core";
 import DisplayNotes from "./pages/DisplayNotes";
 import AddNote from "./pages/AddNote";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router";
 
 const styles = {
   fab: {
@@ -48,10 +48,14 @@ class App extends Component {
     const { notes } = this.state;
     return (
       <Container>
-        <Routes>
-          <Route exact path="/" element={<DisplayNotes notes={notes} deleteNote = {this.deleteNote} />}/>
-          <Route path = "/add" element={<AddNote/>}/>
-        </Routes>
+        <Switch>
+          <Route exact path="/" >
+            <DisplayNotes notes={notes} deleteNote = {this.deleteNote} />
+          </Route>
+          <Route path = "/add">
+            <AddNote />
+          </Route>
+        </Switch>
       </Container>
     )
   }
