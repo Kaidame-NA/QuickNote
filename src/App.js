@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, withStyles } from "@material-ui/core";
 import DisplayNotes from "./pages/DisplayNotes";
 import AddNote from "./pages/AddNote";
+import { Route, Routes } from "react-router-dom";
 
 const styles = {
   fab: {
@@ -15,7 +16,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showHomepage: true,
       notes: [
         {
           id: "5c83c052-60da-425f-a302-9d4735a9d6ae",
@@ -44,21 +44,14 @@ class App extends Component {
     });
   };
 
-  changePage = () => {
-    this.setState((state) => {
-      return {
-        showHomepage: !state.showHomepage,
-      };
-    });
-  };
-
   render() {
-    const { notes, showHomepage } = this.state;
+    const { notes } = this.state;
     return (
       <Container>
-        {
-          showHomepage ? (<DisplayNotes notes={notes} deleteNote={this.deleteNote} changePage={this.changePage} />) : (<AddNote changePage={this.changePage} />)
-        }
+        <Routes>
+          <Route exact path="/" element={<DisplayNotes notes={notes} deleteNote = {this.deleteNote} />}/>
+          <Route path = "/add" element={<AddNote/>}/>
+        </Routes>
       </Container>
     )
   }
