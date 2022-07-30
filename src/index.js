@@ -1,7 +1,11 @@
+import { CssBaseline } from "@material-ui/core";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 ReactDOM.render(
-  <App />, 
+  <>
+    <CssBaseline />
+    <App />
+  </>, 
   document.getElementById("root")
 );
